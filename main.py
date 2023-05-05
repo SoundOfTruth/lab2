@@ -12,7 +12,7 @@ async def start(message: types.Message):
 
 @dp.message_handler()
 async def answer(message: types.Message):
-    response = requests.get("https://apteka-ot-sklada.ru/catalog?q=беродуал", cookies=cookies)
+    response = requests.get(f"https://apteka-ot-sklada.ru/catalog?q={message.text}", cookies=cookies)
     soup = BeautifulSoup(response.text, "html.parser")
     result = soup.findAll('div', attrs={"itemprop": "itemListElement"})
     print(response.status_code)
